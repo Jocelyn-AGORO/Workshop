@@ -2,11 +2,20 @@ function intersection(list1, list2) {
     return list1.filter(a => list2.some(id => id === a.id));
 }
 
-async function getSituations() {
+async function getComportements() {
+    const partieId = Math.round(Math.random() * 3);
+    console.log(partieId);
     try{
-        const response = await fetch("./data/situations.json");
-        const situtations = await response.json();
-        return situtations.situations;
+        let response = await fetch("./data/situations.json");
+        const situations = await response.json();
+        const situation = situations.situations[partieId];
+        response = await fetch("./data/comportements.json");
+        let comportements = await response.json();
+        comportements = comportements.comportements;
+        console.log(comportements)
+        const result = intersection(comportements, situation.comportements)
+        console.log("Result : ", result);
+        return result;
     }
     catch (err) {
         console.log(err)
@@ -54,3 +63,5 @@ async function getBottomCharacters() {
         console.log(err)
     }
 }
+
+getComportements();

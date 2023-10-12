@@ -10,8 +10,11 @@
 <body
         x-init="page=1"
         x-data="{
-        page: 1
+        page: 1,
+        isopen: false,
+        chatBot: false
         }"
+        @keydown.escape="isopen=false"
 >
 <!-- Tool Bar -->
 
@@ -22,7 +25,7 @@
 >
     <div class="starter">
         <h1 class="start-title">Bienvenue au Cluely</h1>
-        <button x-on:click="page = 2">
+        <button x-on:click="page = 2;chatBot = true">
             Commencer
         </button>
     </div>
@@ -32,9 +35,15 @@
 >
     <!-- Page de Jeu -->
     <div class="tools">
+        <div
+                @click="page=1"
+        >Recommencer</div>
         <div>Indices</div>
-        <div>Règles</div>
+        <div
+          @click="page=3"
+        >Règles</div>
     </div>
+    <!-- Plateau de Jeu -->
     <div class="cartes"
          x-data="{
          topCharacters: []
@@ -43,12 +52,13 @@
     >
         <template
                 x-for="topCharacter in topCharacters"
+                :key="topCharacter.id"
         >
         <div class="carte"
              x-data="{
                 attributs: []
              }"
-             @click="attributs=getCharAttributes(topCharacter.id, $data);$dispatch('char');"
+             @click="attributs=getCharAttributes(topCharacter.id);$dispatch('char', {msg: attributs});isopen=true;"
         >
             <img src="./images/carte.png" alt="carte caractère">
         </div>
@@ -90,38 +100,86 @@
     >
         <template
                 x-for="bottomCharacter in bottomCharacters"
+                :key="bottomCharacter.id"
         >
             <div class="carte"
                  x-data="{
                 attributs: []
              }"
-                 @click="attributs=getCharAttributes(bottomCharacter.id, $data);$dispatch('char');"
+                 @click="attributs=getCharAttributes(bottomCharacter.id, $data);$dispatch('char', {msg: attributs});isopen=true;"
             >
                 <img src="./images/carte.png" alt="carte caractère">
             </div>
         </template>
     </div>
-</div>
-<div class="modal">
-    <div class="card"
-         x-init="isopen = false"
-         @char.window="open"
-         x-data="{
-        isopen: false,
-        open: () => {
-            isopen = true;
-            console.log(isopen)
-        }
-     }"
-         x-show="isopen">
-        <div>Hello</div>
-        <template
-                x-for="attribut in attributs"
-        >
-            <div class="attribut"
-                 x-text="attribut">
+    <div class="modal"
+         role="dialog"
+         tabindex="-1"
+         @click.away="isopen = false"
+         x-show="isopen"
+         x-cloak
+         x-transition>
+        <div class="card"
+             x-data="{
+                comportements: []
+             }"
+             @char.window="comportements = $event.detail.msg;console.log(comportements);">
+            <div style="display:flex;justify-content:flex-end;margin-top:20px;width: 80%;">
+                <div
+                        @click="isopen = false"
+                        style="color: blue;font-size:12px; font-weight: bold;"
+                >
+                    X
+                </div>
             </div>
-        </template>
+            <div class="attributs">
+                <template
+                        x-for="comportement in comportements"
+                        :key="comportement.id"
+                >
+                    <div class="attribut"
+                         x-text="comportement.libelle">
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+    <div class="modal"
+         role="dialog"
+         tabindex="-1"
+         @click.away="chatBot = false"
+         x-show="chatBot"
+         x-cloak
+         x-transition>
+        <div class="situation">
+            <div style="display: flex;justify-content: flex-end;width: 100%"
+                 @click="chatBot=false"
+            >
+                Fermer
+            </div>
+            <div class="description">
+                <div class="master-title">Maître du Jeu</div>
+                <div class="master-description">
+                    <p>
+                        Le maître du jeu a fait son choix, vous devrez évaluez la situation et dire si elle est une situation de harcelement sexuel ou non :
+                    </p>
+                </div>
+                <div class="situation"
+                    x-data="{
+                    }">
+                    <div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page des règles du jeux -->
+<div class="regles"
+    x-show="page === 3">
+    <div class="regles-container">
+        <img src="images/regles.png" alt="les règles du jeu">
     </div>
 </div>
 </body>
