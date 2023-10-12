@@ -1,0 +1,56 @@
+function intersection(list1, list2) {
+    return list1.filter(a => list2.some(id => id === a.id));
+}
+
+async function getSituations() {
+    try{
+        const response = await fetch("./data/situations.json");
+        const situtations = await response.json();
+        return situtations.situations;
+    }
+    catch (err) {
+        console.log(err)
+    }
+}
+
+async function getCharAttributes(id) {
+    try{
+        let response = await fetch("./data/caracteres.json");
+        const caracteres = await response.json();
+        const caractere =  caracteres.caracteres.filter(caracte => caracte.id === id)[0];
+        const carAttributes = caractere.attributes;
+        response = await fetch("./data/attributs.json");
+        const atributs = await response.json();
+        let result = intersection(atributs.attributs, carAttributes);
+        console.log(result);
+        return result;
+    }
+    catch (err) {
+        console.log(err)
+    }
+}
+
+async function getTopCharacters() {
+    try{
+        const response = await fetch("./data/caracteres.json");
+        const caracteres = await response.json();
+        const resutlt =  caracteres.caracteres.slice(0,4)
+        console.log(resutlt)
+        return resutlt
+    }
+    catch (err) {
+        console.log(err)
+    }
+}
+
+async function getBottomCharacters() {
+    try{
+        const response = await fetch("./data/caracteres.json");
+        const caracteres = await response.json();
+        return caracteres.
+                caracteres.slice(3, 7)
+    }
+    catch (err) {
+        console.log(err)
+    }
+}

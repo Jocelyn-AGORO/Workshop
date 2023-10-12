@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cluely</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body
+        x-init="page=1"
+        x-data="{
+        page: 1
+        }"
+>
+<!-- Tool Bar -->
+
+<!-- Page d'acceuil -->
+<div
+        class="start-page"
+        x-show="page === 1"
+>
+    <div class="starter">
+        <h1 class="start-title">Bienvenue au Cluely</h1>
+        <button x-on:click="page = 2">
+            Commencer
+        </button>
+    </div>
+</div>
+<div class="game"
+     x-show="page === 2"
+>
+    <!-- Page de Jeu -->
+    <div class="tools">
+        <div>Indices</div>
+        <div>Règles</div>
+    </div>
+    <div class="cartes"
+         x-data="{
+         topCharacters: []
+         }"
+         x-init="topCharacters = getTopCharacters()"
+    >
+        <template
+                x-for="topCharacter in topCharacters"
+        >
+        <div class="carte"
+             x-data="{
+                attributs: []
+             }"
+             @click="attributs=getCharAttributes(topCharacter.id, $data);$dispatch('char');"
+        >
+            <img src="./images/carte.png" alt="carte caractère">
+        </div>
+        </template>
+    </div>
+    <div class="personas">
+        <div class="persona">
+            <img src="images/caracteres/caractere1.png" alt="personna">
+        </div>
+        <div class="persona">
+            <img src="images/caracteres/caractere7.png" alt="personna">
+        </div>
+        <div class="persona">
+            <img src="images/caracteres/caractere8.png" alt="personna">
+        </div>
+        <div class="persona">
+            <img src="images/caracteres/caractere4.png" alt="personna">
+        </div>
+    </div>
+    <div class="personas">
+        <div class="persona">
+            <img src="images/caracteres/caractere2.png" alt="personna">
+        </div>
+        <div class="persona">
+            <img src="images/caracteres/caractere6.png" alt="personna">
+        </div>
+        <div class="persona">
+            <img src="images/caracteres/caractere5.png" alt="personna">
+        </div>
+        <div class="persona">
+            <img src="images/caracteres/caractere3.png" alt="personna">
+        </div>
+    </div>
+    <div class="cartes"
+         x-data="{
+         bottomCharacters: []
+         }"
+         x-init="bottomCharacters = getBottomCharacters()"
+    >
+        <template
+                x-for="bottomCharacter in bottomCharacters"
+        >
+            <div class="carte"
+                 x-data="{
+                attributs: []
+             }"
+                 @click="attributs=getCharAttributes(bottomCharacter.id, $data);$dispatch('char');"
+            >
+                <img src="./images/carte.png" alt="carte caractère">
+            </div>
+        </template>
+    </div>
+</div>
+<div class="modal">
+    <div class="card"
+         x-init="isopen = false"
+         @char.window="open"
+         x-data="{
+        isopen: false,
+        open: () => {
+            isopen = true;
+            console.log(isopen)
+        }
+     }"
+         x-show="isopen">
+        <div>Hello</div>
+        <template
+                x-for="attribut in attributs"
+        >
+            <div class="attribut"
+                 x-text="attribut">
+            </div>
+        </template>
+    </div>
+</div>
+</body>
+</html>

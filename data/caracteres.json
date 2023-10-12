@@ -1,0 +1,101 @@
+{
+  "caracteres": [
+    {
+      "id": 1,
+      "nom": "Profil 1",
+      "attributes": [
+        1, 2, 3, 4, 5
+      ]
+    }, {
+      "id": 2,
+      "nom": "Profil 2",
+      "attributes": [
+        6, 7, 8, 9, 10
+      ]
+    },    {
+      "id": 3,
+      "nom": "Profil 3",
+      "attributes": [
+        11, 12, 13, 14, 15
+      ]
+    },    {
+      "id": 4,
+      "nom": "Profil 4",
+      "attributes": [
+        5, 4, 6, 10, 11
+      ]
+    },    {
+      "id": 5,
+      "nom": "Profil 5",
+      "attributes": [
+        1, 3, 4, 5, 10
+      ]
+    },    {
+      "id": 6,
+      "nom": "Profil 6",
+      "attributes": [
+        7, 8, 9, 10, 11
+      ]
+    },    {
+      "id": 7,
+      "nom": "Profil 7",
+      "attributes": [
+        5, 8, 9, 10, 2
+      ]
+    },    {
+      "id": 8,
+      "nom": "Profil 8",
+      "attributes": [
+        12, 14, 15, 3, 4
+      ]
+    },    {
+      "id": 9,
+      "nom": "Profil 9",
+      "attributes": [
+        15, 1, 11, 8, 7
+      ]
+    },    {
+      "id": 10,
+      "nom": "Profil 10",
+      "attributes": [
+        9, 14, 10, 2, 7
+      ]
+    },    {
+      "id": 11,
+      "nom": "Profil 11",
+      "attributes": [
+        11, 1, 3, 4, 5
+      ]
+    },    {
+      "id": 12,
+      "nom": "Profil 12",
+      "attributes": [
+        12, 14, 15, 3, 4
+      ]
+    },    {
+      "id": 13,
+      "nom": "Profil 13",
+      "attributes": [
+        8, 9, 10, 2, 7
+      ]
+    },    {
+      "id": 14,
+      "nom": "Profil 14",
+      "attributes": [
+        10, 7, 2, 3, 4
+      ]
+    },    {
+      "id": 15,
+      "nom": "Profil 15",
+      "attributes": [
+        1, 3, 4, 5, 11
+      ]
+    },    {
+      "id": 16,
+      "nom": "Profil 16",
+      "attributes": [
+        3, 4, 5, 1, 12
+      ]
+    }
+  ]
+}

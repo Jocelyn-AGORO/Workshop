@@ -1,0 +1,64 @@
+{
+  "attributs": [
+    {
+      "id": 1,
+      "libelle": "Créatif"
+    },
+    {
+      "id": 2,
+      "libelle": "Communicatif"
+    },
+    {
+      "id": 3,
+      "libelle": "Axé sur la collaboration"
+    },
+    {
+      "id": 4,
+      "libelle": "Proactif"
+    },
+    {
+      "id": 5,
+      "libelle": "Attentif aux détails"
+    },
+    {
+      "id": 6,
+      "libelle": "Orienté vers les résultats"
+    },
+    {
+      "id": 7,
+      "libelle": "Organisé"
+    },
+    {
+      "id": 8,
+      "libelle": "Axé sur la qualité"
+    },
+    {
+      "id": 9,
+      "libelle": "Analytique"
+    },
+    {
+      "id": 10,
+      "libelle": "Autonome"
+    },
+    {
+      "id": 11,
+      "libelle": "Axé sur la croissance"
+    },
+    {
+      "id": 12,
+      "libelle": "Flexible"
+    },
+    {
+      "id": 13,
+      "libelle": "Diplomate"
+    },
+    {
+      "id": 14,
+      "libelle": "Axé sur la résolution de problèmes"
+    },
+    {
+      "id": 15,
+      "libelle": "Axé sur la clientèle"
+    }
+  ]
+}

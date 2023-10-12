@@ -1,0 +1,23 @@
+{
+  "situations": [{
+    "id": 1,
+    "nom": "Partie 1",
+    "coupable": 1,
+    "victime": 4,
+    "comportements": [
+      1,
+      2
+    ],
+    "isBully": false
+  },{
+    "id": 2,
+    "nom": "Partie 2",
+    "coupable": 1,
+    "victime": 4,
+    "comportements": [
+      1,
+      2
+    ],
+    "isBully": false
+  }]
+}
