@@ -4,7 +4,7 @@
 }
 
 body{
-    background-image: url('../images/parchemin.png');
+    background-image: url('images/parchemin.png');
     background-color: #EADBAF;
     background-repeat: no-repeat;
     background-size: cover;
