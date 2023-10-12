@@ -2,31 +2,40 @@
   "comportements": [
     {
       "id": 1,
-      "description": "Lors d'une soirée, un inconnu fait un commentaire sur l'apparence d'une personne"
+      "description": "Lors d'une soirée, un inconnu fait un commentaire sur l'apparence d'une personne",
+      "isBully": true
     },{
       "id": 2,
-      "description": "Vous êtes en boîte de nuit avec des amis lorsqu'un homme inconnu profite de la foule et de la musique forte pour vous toucher"
+      "description": "Vous êtes en boîte de nuit avec des amis lorsqu'un homme inconnu profite de la foule et de la musique forte pour vous toucher",
+      "isBully": true
     },{
       "id": 3,
-      "description": "Vous recevez des messages d'un ami qui contiennent des conversations sexuelles, mais le ton varie de manière significative entre des moments de flirt et de discussions plus amicales"
+      "description": "Vous recevez des messages d'un ami qui contiennent des conversations sexuelles, mais le ton varie de manière significative entre des moments de flirt et de discussions plus amicales",
+      "isBully": true
     },{
       "id": 4,
-      "description": "Vous faites partie d'un groupe d'amis, et l'un d'entre eux fait un commentaire général sur le thème de la séduction"
+      "description": "Vous faites partie d'un groupe d'amis, et l'un d'entre eux fait un commentaire général sur le thème de la séduction",
+      "isBully": false
     },{
       "id": 5,
-      "description": "Une personne fait une plaisanterie légèrement coquine, mais cela ne semble pas être une avance sexuelle"
+      "description": "Une personne fait une plaisanterie légèrement coquine, mais cela ne semble pas être une avance sexuelle",
+      "isBully": false
     },{
       "id": 6,
-      "description": "Un ami vous propose de regarder un film ensemble chez lui, mais cela semble être une invitation amicale"
+      "description": "Un ami vous propose de regarder un film ensemble chez lui, mais cela semble être une invitation amicale",
+      "isBully": false
     },{
       "id": 7,
-      "description": "Un ami à vous fait occasionnellement des compliments sur votre apparence"
+      "description": "Un ami à vous fait occasionnellement des compliments sur votre apparence",
+      "isBully": false
     },{
       "id": 8,
-      "description": "Une connaissance vous invite de manière répétée à une soirée privée chez lui, en insistant que cela pourrait être \"spécial\" ou \"intime\""
+      "description": "Une connaissance vous invite de manière répétée à une soirée privée chez lui, en insistant que cela pourrait être \"spécial\" ou \"intime\"",
+      "isBully": true
     },{
       "id": 9,
-      "description": "Un ami vous fait réfulièrement des commentaires suggestifs sur la manière dont vous portez vos vêtements et votre apparence physique"
+      "description": "Un ami vous fait régulièrement des commentaires suggestifs sur la manière dont vous portez vos vêtements et votre apparence physique",
+      "isBully": true
     }
   ]
 }

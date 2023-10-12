@@ -64,4 +64,4 @@ async function getBottomCharacters() {
     }
 }
 
-getComportements();
+// getComportements();

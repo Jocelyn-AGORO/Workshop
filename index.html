@@ -12,7 +12,10 @@
         x-data="{
         page: 1,
         isopen: false,
-        chatBot: false
+        chatBot: false,
+        isBully: false,
+        isNotBully: false,
+        isNotFalseBully: false
         }"
         @keydown.escape="isopen=false"
 >
@@ -25,23 +28,48 @@
 >
     <div class="starter">
         <h1 class="start-title">Bienvenue au Cluely</h1>
-        <button x-on:click="page = 2;chatBot = true">
+        <button style="margin: 0 auto" class="play-button" x-on:click="page = 2;chatBot = true">
             Commencer
         </button>
     </div>
 </div>
+<!-- Page de Jeu -->
 <div class="game"
      x-show="page === 2"
 >
-    <!-- Page de Jeu -->
     <div class="tools">
         <div
                 @click="page=1"
-        >Recommencer</div>
-        <div>Indices</div>
+        >
+            <div class="option">
+                <div class="icon">
+                    <img src="images/restart.png" alt="îcone recommencer">
+                </div>
+                <div>Recommencer</div>
+            </div>
+        </div>
+        <div>
+            <div class="option">
+                <div class="icon">
+                    <img src="images/indices.png" alt="îcone des indices">
+                </div>
+                <div>
+                    Indices
+                </div>
+            </div>
+        </div>
         <div
           @click="page=3"
-        >Règles</div>
+        >
+            <div class="option">
+                <div class="icon">
+                    <img src="images/rules.png" alt="icône des règles">
+                </div>
+                <div>
+                    Règles
+                </div>
+            </div>
+        </div>
     </div>
     <!-- Plateau de Jeu -->
     <div class="cartes"
@@ -144,6 +172,7 @@
             </div>
         </div>
     </div>
+    <!-- Modal Selection de situation -->
     <div class="modal"
          role="dialog"
          tabindex="-1"
@@ -157,19 +186,179 @@
             >
                 Fermer
             </div>
-            <div class="description">
+            <div class="description"
+                 x-data="{
+                        situations: []
+                    }"
+                 x-init="topSituations = getComportements()"
+            >
                 <div class="master-title">Maître du Jeu</div>
                 <div class="master-description">
                     <p>
                         Le maître du jeu a fait son choix, vous devrez évaluez la situation et dire si elle est une situation de harcelement sexuel ou non :
                     </p>
                 </div>
-                <div class="situation"
-                    x-data="{
-                    }">
-                    <div>
-
-                    </div>
+                <div class="master-situation"
+                     x-data="{
+                        situations: topSituations,
+                        situationId: 1,
+                        newSituation: () => {
+                            console.log('Hello')
+                            situationId += 1
+                            chatBot = true
+                        }
+                     }"
+                     @newcase.window="newSituation"
+                     x-init="situations = topSituations; console.log(situations);"
+                >
+                    <template x-for="situation in situations"
+                              :key="situation.id"
+                    >
+                        <div x-show="situation.id === situationId"
+                             @click="situationId = situation.id">
+                            <div
+                                    x-text="situation.description"
+                            >
+                            </div>
+                            <div class="selection">
+                                <button class="play-button"
+                                        x-data="{
+                                goToNext: () => {
+                                    if(situation.isBully){
+                                        chatBot = false;
+                                        isBully = true;
+                                    }else {
+                                        isNotBully = true;
+                                    }
+                                }
+                            }"
+                                        @click="goToNext"
+                                >
+                                    Harcelement
+                                </button>
+                                <button class="play-button"
+                                        x-data="{
+                                goToNotBully: () => {
+                                    if(!situation.isBully){
+                                        isBully = true;
+                                    }else {
+                                        isNotFalseBully = true;
+                                    }
+                                }
+                            }"
+                                @click="goToNotBully">
+                                    Pas Harcelement
+                                </button>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal selection de situation de harcelement -->
+    <div class="modal"
+         role="dialog"
+         tabindex="-1"
+         x-show="isBully"
+         x-cloak
+         x-transition>
+        <div class="situation"
+             @click.away="isBully = false">
+            <div style="display: flex;justify-content: flex-end;width: 100%"
+                 @click="isBully=false"
+            >
+                Fermer
+            </div>
+            <div class="description"
+            >
+                <div class="master-title">Maître du Jeu</div>
+                <div class="master-description">
+                    <p>
+                        Bravo vous avez identifié une situation de harcelement sexuel. Découvrez, les indices en haut de la page.
+                        Pour chaque persona, vous avez une carte caractère décrivant leurs compoertements et attitudes.
+                        Cliquez dessus pour découvrir chaque persona.
+                        N'attendez plus longtemps, l'aventure commence maintenant !!!
+                    </p>
+                </div>
+                <div style="display: flex;justify-content: center; align-items: center;">
+                    <button class="play-button"
+                            @click="isBully = false"
+                    >
+                        Continuer l'aventure
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal selection de situation de vrai non harcelement -->
+    <div class="modal"
+         role="dialog"
+         tabindex="-1"
+         x-show="isNotBully"
+         x-cloak
+         x-transition>
+        <div class="situation"
+             @click.away="isNotBully = false">
+            <div style="display: flex;justify-content: flex-end;width: 100%"
+                 @click="isNotBully=false"
+            >
+                Fermer
+            </div>
+            <div class="description"
+            >
+                <div class="master-title">Maître du Jeu</div>
+                <div class="master-description">
+                    <p>
+                        Dommage, cette situation n'est pas considérée comme un harcelement sexuel.
+                        Découvrez de nouvelles enquêtes et essayer de démasquer le harceleur et sa victime.
+                    </p>
+                </div>
+                <div style="display: flex;justify-content: center; align-items: center;">
+                    <button class="play-button"
+                            x-data="{
+                                newSituation: () => {
+                                    situationId += 1
+                                    chatBot = true
+                                }
+                            }"
+                            @click="newSituation"
+                    >
+                        Nouvelle Enquête
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal selection de situation de faux non harcelement -->
+    <div class="modal"
+         role="dialog"
+         tabindex="-1"
+         x-show="isNotFalseBully"
+         x-cloak
+         x-transition>
+        <div class="situation"
+             @click.away="isNotFalseBully = false">
+            <div style="display: flex;justify-content: flex-end;width: 100%"
+                 @click="isNotFalseBully=false"
+            >
+                Fermer
+            </div>
+            <div class="description"
+            >
+                <div class="master-title">Maître du Jeu</div>
+                <div class="master-description">
+                    <p>
+                        Dommage, cette situation est bien considérée comme un harcelement sexuel.
+                        Découvrez de nouvelles enquêtes et essayer de démasquer le harceleur et sa victime.
+                    </p>
+                </div>
+                <div style="display: flex;justify-content: center; align-items: center;">
+                    <button class="play-button"
+                            @click="$dispatch('newcase')"
+                    >
+                        Nouvelle Enquête
+                    </button>
                 </div>
             </div>
         </div>
@@ -178,6 +367,40 @@
 <!-- Page des règles du jeux -->
 <div class="regles"
     x-show="page === 3">
+    <div class="tools">
+        <div
+                @click="page=1"
+        >
+            <div class="option">
+                <div class="icon">
+                    <img src="images/restart.png" alt="îcone recommencer">
+                </div>
+                <div>Recommencer</div>
+            </div>
+        </div>
+        <div>
+            <div class="option">
+                <div class="icon">
+                    <img src="images/indices.png" alt="îcone des indices">
+                </div>
+                <div>
+                    Indices
+                </div>
+            </div>
+        </div>
+        <div
+                @click="page=3"
+        >
+            <div class="option">
+                <div class="icon">
+                    <img src="images/rules.png" alt="icône des règles">
+                </div>
+                <div>
+                    Règles
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="regles-container">
         <img src="images/regles.png" alt="les règles du jeu">
     </div>

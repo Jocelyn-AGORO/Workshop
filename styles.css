@@ -107,10 +107,12 @@ body{
 .situation {
     background-color: #EADBAF;
     width: 700px;
-    height: 550px;
+    height: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    transform: skew(-2deg);
+    border-radius: 10px;
 }
 
 .tools{
@@ -118,6 +120,7 @@ body{
     justify-content: flex-end;
     align-items: center;
     gap: 20px;
+    font-size: 20px;
 }
 
 .regles{
@@ -136,6 +139,7 @@ body{
     font-weight: bold;
     font-size: 28px;
     text-align: center;
+    color: #2a2929;
 }
 .attribut{
 }
@@ -152,4 +156,56 @@ body{
     font-size: 24px;
     text-align: center;
     text-wrap: break;
+}
+.master-situation{
+    padding: 10px 20px;
+    font-size: 32px;
+    font-weight: 350;
+    text-align: center;
+    text-wrap: break;
+}
+
+.selection{
+    width: 70%;
+    display: flex;
+    justify-content:space-between;
+    align-items:center;
+    margin: 20px auto;
+}
+
+.play-button{
+    transform: skew(-25deg);
+    font-size: 18px;
+    font-family: inherit;
+    color: #f4e8e1;
+    background-color: black;
+    border: 2px solid #8a817c;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px #000;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.play-button:hover {
+    background-color: #4b4845;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+    transform: translateY(-2px) skew(-25deg);
+}
+
+.play-button:active {
+    background-color: #322f2d;
+    transform: translateY(1px) skew(-25deg);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
+}
+.icon img {
+    width: 24px;
+    height: 24px;
+}
+.option{
+    display: flex;
+    gap: 5px;
 }

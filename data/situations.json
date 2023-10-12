@@ -25,6 +25,26 @@
     "coupable": 2,
     "victime": 5,
     "comportements": [
+      3,
+      5
+    ],
+    "isBully": false
+  },{
+    "id": 4,
+    "nom": "Partie 4",
+    "coupable": 2,
+    "victime": 5,
+    "comportements": [
+      5,
+      3
+    ],
+    "isBully": false
+  },{
+    "id": 5,
+    "nom": "Partie 5",
+    "coupable": 6,
+    "victime": 7,
+    "comportements": [
       5,
       3
     ],
